@@ -1,0 +1,7 @@
+.venv
+.env
+.ref.py
+.html_content.txt
+.lessons.json
+__pycache__/
+*.pyc
