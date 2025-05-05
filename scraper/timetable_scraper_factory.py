@@ -7,6 +7,8 @@ from .fetcher import *
 from .fetcher.fetcher_interface import FetcherInterface
 from .extractor import *
 from .extractor.extractor_interface import ExtractorInterface
+from .cleaner import *
+from .cleaner.cleaner_interface import CleanerInterface
 
 
 class TimetableScraperFactory:
@@ -15,6 +17,11 @@ class TimetableScraperFactory:
     def create_fetcher() -> FetcherInterface:
 
         return HTMLFetcher()
+    
+    @staticmethod
+    def create_html_cleaner() -> CleanerInterface:
+
+        return HTMLCleaner()
     
     @staticmethod
     def create_chunker() -> ChunkerInterface:
@@ -27,22 +34,27 @@ class TimetableScraperFactory:
         return GroqAgent()
     
     @staticmethod
-    def create_prompt_exexutor() -> PromptExecutorInterface:
+    def create_prompt_executor() -> PromptExecutorInterface:
         
         return PromptExecutor(ai_agent = TimetableScraperFactory.create_ai_agent())
     
     @staticmethod
     def create_json_extractor() -> ExtractorInterface:
 
-        return JsonExtractor()
+        return RobustJsonExtractor()
 
     @staticmethod
     def create_timetable_extractor() -> ExtractorInterface:
 
         return TimetableExtractor(
-            executor = TimetableScraperFactory.create_prompt_exexutor(),
+            executor = TimetableScraperFactory.create_prompt_executor(),
             json_extractor = TimetableScraperFactory.create_json_extractor()
             )
+
+    @staticmethod
+    def create_timetable_json_cleaner() -> CleanerInterface:
+
+        return TimetableJsonCleaner()
     
 
 

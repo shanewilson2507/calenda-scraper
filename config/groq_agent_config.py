@@ -10,4 +10,4 @@ GROQ_MODEL_NAME = "llama3-8b-8192"
 
 GROQ_API_ENDPOINT = "https://api.groq.com/openai/v1"
 
-GROQ_TEMPERATURE = 0.2
+GROQ_TEMPERATURE = 0.1

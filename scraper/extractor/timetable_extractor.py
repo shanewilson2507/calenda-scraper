@@ -23,6 +23,8 @@ class TimetableExtractor(ExtractorInterface):
 
         response = self.executor.execute(user_message = user_message, system_message = self.system_message)
 
+        print(response)
+
         timetable_content_json = self.json_extractor.extract(response)
 
         return timetable_content_json

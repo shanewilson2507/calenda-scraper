@@ -1,7 +1,8 @@
 .venv
 .env
-.ref.py
-.html_content.txt
-.lessons.json
+*.json
+*.xlsx
+*.csv
+*.xls
 __pycache__/
 *.pyc
