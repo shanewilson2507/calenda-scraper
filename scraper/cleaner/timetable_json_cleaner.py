@@ -14,8 +14,23 @@ class TimetableJsonCleaner(CleanerInterface):
 
         for activity in timetable:
 
-            if activity["activity_name"] != "" and activity["start_time"] != "":
+            if (verify_field_exists('activity_name', activity)
+                and
+                verify_field_exists('start_time', activity)
+                and 
+                (verify_field_exists('day', activity) or verify_field_exists('date_range', activity)) 
+                ):
 
                 clean_timetable.append(activity)
 
+        clean_timetable = remove_empty_fields(clean_timetable)
+
         return json.dumps(clean_timetable)
+
+def verify_field_exists(field: str, data: Dict[str,str]) -> bool:
+    
+    return (field in data) and (field)
+
+def remove_empty_fields(data: List[Dict[str, str]]) -> List[Dict[str, str]]:
+    
+    return [{k: v for k, v in item.items() if v.strip()} for item in data]

@@ -7,7 +7,7 @@ from openai import OpenAI
 
 class GroqAgent(AIAgentInterface):
     
-    def __init__(self, api_key: str = GROQ_API_KEY) -> None:
+    def __init__(self, api_key: str = GROQ_API_KEY, seed: str = GROQ_SEED) -> None:
 
         self.client = OpenAI(
             api_key = api_key, 
@@ -17,6 +17,8 @@ class GroqAgent(AIAgentInterface):
         self.model = GROQ_MODEL_NAME
 
         self.temperature = GROQ_TEMPERATURE
+        
+        self.seed = seed
 
     
     def ask(self, user_message: str, system_message: str) -> str:
@@ -38,7 +40,9 @@ class GroqAgent(AIAgentInterface):
         
             temperature = self.temperature,
         
-            messages = messages
+            messages = messages,
+
+            seed = self.seed
         )
 
         response_str = response.choices[0].message.content
