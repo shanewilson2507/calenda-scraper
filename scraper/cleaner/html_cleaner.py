@@ -1,6 +1,6 @@
 from .cleaner_interface import CleanerInterface
 
-from config.html_cleaner_config import *
+from config.cleaner.html_cleaner_config import *
 
 from bs4 import BeautifulSoup
 import htmlmin
@@ -26,4 +26,6 @@ class HTMLCleaner(CleanerInterface):
             remove_empty_space=REMOVE_EMPTY_SPACE
         )
 
-        return clean_html
+        pretty_html = BeautifulSoup(clean_html, "html.parser").prettify()
+
+        return pretty_html

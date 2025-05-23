@@ -6,3 +6,4 @@
 *.xls
 __pycache__/
 *.pyc
+extracted_html.txt

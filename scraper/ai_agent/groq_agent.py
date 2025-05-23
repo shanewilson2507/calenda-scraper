@@ -1,6 +1,6 @@
 from .ai_agent_interface import AIAgentInterface
 
-from config.groq_agent_config import *
+from config.ai_agent.groq_agent_config import *
 
 from openai import OpenAI
 

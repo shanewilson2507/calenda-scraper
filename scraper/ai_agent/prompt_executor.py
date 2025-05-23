@@ -2,7 +2,7 @@ from .prompt_executor_interface import PromptExecutorInterface
 from .ai_agent_interface import AIAgentInterface
 
 from exceptions.max_retries_exceeded_error import MaxRetriesExceededError
-from config.prompt_executor_config import *
+from config.ai_agent.prompt_executor_config import *
 
 from openai import RateLimitError
 

@@ -1,15 +1,14 @@
-from scraper.factory.default_html_timetable_scraper_factory import DefaultHTMLTimetableScraperFactory
+from scraper.factory.selenium_html_timetable_scraper_factory import SeleniumHTMLTimetableScraperFactory
 
 import json
 
 
 URL_LIST = [
-    "https://www.thepetiteperformers.com/acton",
-    "https://www.thepetiteperformers.com/Notting-Hill"
+    "https://brandedweb-next.mindbodyonline.com/components/widgets/schedules/view/76181164bc3/schedule"
 ]
 
 def main():
-    scraper = DefaultHTMLTimetableScraperFactory.create_timetable_scraper()
+    scraper = SeleniumHTMLTimetableScraperFactory.create_timetable_scraper()
     
     output = []
 

@@ -2,9 +2,6 @@ from .fetcher_interface import FetcherInterface
 
 import requests
 
-from bs4 import BeautifulSoup
-
-
 class HTMLFetcher(FetcherInterface):
 
     def fetch(self, url: str) -> str:
