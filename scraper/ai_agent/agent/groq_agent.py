@@ -1,6 +1,6 @@
 from .ai_agent_interface import AIAgentInterface
 
-from config.ai_agent.groq_agent_config import *
+from config.ai_agent.groq_agent_config import GROQ_API_ENDPOINT, GROQ_API_KEY, GROQ_MODEL_NAME, GROQ_SEED, GROQ_TEMPERATURE
 
 from openai import OpenAI
 

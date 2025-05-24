@@ -1,9 +1,8 @@
 from .timetable_scraper_interface import TimetableScraperInterface
-from ..fetcher.fetcher_interface import FetcherInterface
-from ..chunker.chunker_interface import ChunkerInterface
-from ..extractor.extractor_interface import ExtractorInterface
-from ..cleaner.cleaner_interface import CleanerInterface
-
+from scraper.fetcher.fetcher_interface import FetcherInterface
+from scraper.chunker.chunker_interface import ChunkerInterface
+from scraper.extractor.extractor_interface import ExtractorInterface
+from scraper.cleaner.cleaner_interface import CleanerInterface
 
 from typing import List, Dict
 import json

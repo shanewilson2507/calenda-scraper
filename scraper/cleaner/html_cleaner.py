@@ -1,6 +1,6 @@
 from .cleaner_interface import CleanerInterface
 
-from config.cleaner.html_cleaner_config import *
+import config.cleaner.html_cleaner_config as config
 
 from bs4 import BeautifulSoup
 import htmlmin
@@ -14,16 +14,16 @@ class HTMLCleaner(CleanerInterface):
 
         body_soup = BeautifulSoup(str(soup.body), "html.parser")
 
-        for tag in body_soup(REMOVABLE_TAGS_LIST):
+        for tag in body_soup(config.REMOVABLE_TAGS_LIST):
             
             tag.decompose()         
 
         clean_html = htmlmin.minify(
             str(body_soup),  
-            remove_comments=REMOVE_COMMENTS, 
-            reduce_boolean_attributes=REDUCE_BOOLEAN_ATTRIBUTES,
-            reduce_empty_attributes=REDUCE_EMPTY_ATTRIBUTES,
-            remove_empty_space=REMOVE_EMPTY_SPACE
+            remove_comments = config.REMOVE_COMMENTS, 
+            reduce_boolean_attributes = config.REDUCE_BOOLEAN_ATTRIBUTES,
+            reduce_empty_attributes = config.REDUCE_EMPTY_ATTRIBUTES,
+            remove_empty_space = config.REMOVE_EMPTY_SPACE
         )
 
         pretty_html = BeautifulSoup(clean_html, "html.parser").prettify()

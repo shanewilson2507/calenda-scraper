@@ -1,6 +1,6 @@
 from .extractor_interface import ExtractorInterface
 
-from scraper.ai_agent.prompt_executor_interface import PromptExecutorInterface
+from scraper.ai_agent.prompt_executor.prompt_executor_interface import PromptExecutorInterface
 from config.extractor.timetable_extractor_config import *
 
 from typing import List, Dict
