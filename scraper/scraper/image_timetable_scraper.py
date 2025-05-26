@@ -1,49 +1,35 @@
 from .timetable_scraper_interface import TimetableScraperInterface
 from scraper.fetcher.fetcher_interface import FetcherInterface
-from scraper.chunker.chunker_interface import ChunkerInterface
 from scraper.extractor.extractor_interface import ExtractorInterface
 from scraper.cleaner.cleaner_interface import CleanerInterface
 
 from typing import List, Dict
 import json
+import base64
 
 
-class HTMLTimetableScraper(TimetableScraperInterface):
+class ImageTimetableScraper(TimetableScraperInterface):
 
     def __init__(
             self,
             fetcher: FetcherInterface,
-            cleaner: CleanerInterface,
-            chunker: ChunkerInterface,
             timetable_extractor: ExtractorInterface,
             timetable_json_cleaner: CleanerInterface
             ):
         
         self.fetcher = fetcher
-
-        self.cleaner = cleaner
-        
-        self.chunker = chunker
         
         self.timetable_extractor = timetable_extractor
 
         self.timetable_json_cleaner = timetable_json_cleaner
 
     def scrape_timetable(self, url: str) -> List[Dict[str,str]]:
-
-        timetable = []
         
-        raw_html: str = self.fetcher.fetch(url)
+        base64_jpeg_image: str = self.fetcher.fetch(url)
 
-        clean_html: str = self.cleaner.clean(raw_html)
+        self._save_image(base64_jpeg_image)
 
-        html_chunks = self.chunker.chunk(clean_html)
-
-        self._save_html(html_chunks)
-
-        for html_chunk in html_chunks:
-
-            timetable += self.timetable_extractor.extract(html_chunk)
+        timetable = self.timetable_extractor.extract(base64_jpeg_image)
         
         timetable_json_str = json.dumps(timetable)
 
@@ -53,15 +39,12 @@ class HTMLTimetableScraper(TimetableScraperInterface):
 
         return cleaned_timetable
     
-    def _save_html(self, html_chunks: str) -> None:
+    def _save_image(self, base64_jpeg_image: str) -> None:
 
-        with open("extracted_html.html", "w", encoding = "utf-8") as file:
+        with open("page_screenshot.jpeg", "wb") as file:
 
-            for i, html_chunk in enumerate(html_chunks, start = 1):
+            jpeg_bytes = base64.b64decode(base64_jpeg_image)
 
-                file.write('\n'*3 + '<!--' + '#'*30 + f'  CHUNK {i}  ' + '#'*30 + '-->' + '\n'*3 + html_chunk)
+            file.write(jpeg_bytes)
 
-
-
-
-
+        

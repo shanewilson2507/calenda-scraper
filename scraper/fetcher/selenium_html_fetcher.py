@@ -26,14 +26,17 @@ class SeleniumHTMLFetcher(FetcherInterface):
 
         self.driver.get(url)
 
-        WebDriverWait(self.driver, 10).until(
-
-            lambda d: d.execute_script("return document.readyState") == "complete"
-        
-        )
-
-        time.sleep(3)
+        time.sleep(10)
 
         raw_html: str = self.driver.page_source
 
         return raw_html
+    
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        self.driver.quit()
+    
+    def __del__(self):
+        self.driver.quit()

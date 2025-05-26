@@ -1,13 +1,12 @@
 TIMETABLE_EXTRACTOR_SYSTEM_MESSAGE = (
-    "You are a strict HTML parser that extracts timetable activities into JSON format. "
-    "You will receive a single chunk of HTML content at a time."
-    "If the chunk does not contain any activity related data, please return []."
-    "Do not assume access to previous or future chunks. "
+    "You are an assistant that extracts timetable information from images."
+    "The images may contain schedules, timetables, or event listings."
+    "Your task is to extract all relevant activities in the image and return them in JSON format."
+    "If the image does not contain any activity related data, please return []."
     "You must return a complete JSON array of activity objects."
     "If a field is NOT SPECIFIED or CANNOT be inferred, then USE AN EMPTY STRING: ''. Eg./ {{'field' : ''}}."
-    "If the chunk does not contain enough information to constitute any activities, return an empty JSON array: []. "
     "Your response MUST be a valid JSON array — no explanations, markdown, or extra text."
-    "Please extract all lesson objects from the HTML. Each lesson object may contain the following fields:\n"
+    "Please extract all activity objects from the image. Each activity object may contain the following fields:\n"
     "- activity_name: The name or title of the activity.\n"
     "- format: The format of the activity, e.g., group class, camp, private lesson. This may be inferred if not explicitly stated.\n"
     "- start_time: The starting time of the activity in MILITARY TIME FORMAT.\n"
@@ -23,13 +22,6 @@ TIMETABLE_EXTRACTOR_SYSTEM_MESSAGE = (
     "- room_name: The name of the room/studio/hall within the venue where the lesson occurs.\n"
     "- location: The general area where the venue is located. Eg./ the town/city/district it is located in.\n"
 
-    "\n\n Only include a field in the JSON if you are confident that the relevant information is present in the HTML."
+    "\n\n Only include a field in the JSON if you are confident that the relevant information is present in the image."
     "If a field is not found or is ambiguous USE AN EMPTY STRING: ''."
-)
-
-
-
-
-TIMETABLE_EXTRACTOR_USER_MESSAGE_TEMPLATE = (
-    "\n Extract all activities in the timetable/schedule from the following HTML content: \n\n"
 )

@@ -5,7 +5,7 @@ from scraper.chunker import HTMLChunker
 from scraper.chunker.chunker_interface import ChunkerInterface
 from scraper.fetcher import SeleniumHTMLFetcher
 from scraper.fetcher.fetcher_interface import FetcherInterface
-from scraper.extractor import TimetableExtractor, RobustJsonExtractor
+from scraper.extractor import HTMLTimetableExtractor, RobustJsonExtractor
 from scraper.extractor.extractor_interface import ExtractorInterface
 from scraper.cleaner import HTMLCleaner, TimetableJsonCleaner
 from scraper.cleaner.cleaner_interface import CleanerInterface
@@ -47,7 +47,7 @@ class SeleniumHTMLTimetableScraperFactory(TimetableScraperFactoryInterface):
     @staticmethod
     def _create_timetable_extractor() -> ExtractorInterface:
 
-        return TimetableExtractor(
+        return HTMLTimetableExtractor(
             executor = SeleniumHTMLTimetableScraperFactory._create_prompt_executor(),
             json_extractor = SeleniumHTMLTimetableScraperFactory._create_json_extractor()
             )

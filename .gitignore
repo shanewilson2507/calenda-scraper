@@ -2,8 +2,10 @@
 .env
 *.json
 *.xlsx
+*.html
+*.jpeg
+*.png
 *.csv
 *.xls
 __pycache__/
 *.pyc
-extracted_html.txt

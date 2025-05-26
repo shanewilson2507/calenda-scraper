@@ -1,11 +1,11 @@
-from scraper.ai_agent import PromptExecutor, GroqAgent
+from scraper.ai_agent import GroqAgent, PromptExecutor
 from scraper.ai_agent.agent.ai_agent_interface import AIAgentInterface
 from scraper.ai_agent.prompt_executor.prompt_executor_interface import PromptExecutorInterface
 from scraper.chunker import HTMLChunker
 from scraper.chunker.chunker_interface import ChunkerInterface
 from scraper.fetcher import HTMLFetcher
 from scraper.fetcher.fetcher_interface import FetcherInterface
-from scraper.extractor import TimetableExtractor, RobustJsonExtractor
+from scraper.extractor import HTMLTimetableExtractor, RobustJsonExtractor
 from scraper.extractor.extractor_interface import ExtractorInterface
 from scraper.cleaner import HTMLCleaner, TimetableJsonCleaner
 from scraper.cleaner.cleaner_interface import CleanerInterface
@@ -47,7 +47,7 @@ class DefaultHTMLTimetableScraperFactory(TimetableScraperFactoryInterface):
     @staticmethod
     def _create_timetable_extractor() -> ExtractorInterface:
 
-        return TimetableExtractor(
+        return HTMLTimetableExtractor(
             executor = DefaultHTMLTimetableScraperFactory._create_prompt_executor(),
             json_extractor = DefaultHTMLTimetableScraperFactory._create_json_extractor()
             )

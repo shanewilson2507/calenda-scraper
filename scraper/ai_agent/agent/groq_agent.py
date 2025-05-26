@@ -1,22 +1,22 @@
 from .ai_agent_interface import AIAgentInterface
 
-from config.ai_agent.groq_agent_config import GROQ_API_ENDPOINT, GROQ_API_KEY, GROQ_MODEL_NAME, GROQ_SEED, GROQ_TEMPERATURE
+import config.ai_agent.groq_agent_config as config
 
 from openai import OpenAI
 
 
 class GroqAgent(AIAgentInterface):
     
-    def __init__(self, api_key: str = GROQ_API_KEY, seed: str = GROQ_SEED) -> None:
+    def __init__(self, api_key: str = config.GROQ_API_KEY, seed: str = config.GROQ_SEED) -> None:
 
         self.client = OpenAI(
             api_key = api_key, 
-            base_url = GROQ_API_ENDPOINT
+            base_url = config.GROQ_API_ENDPOINT
         )
 
-        self.model = GROQ_MODEL_NAME
+        self.model = config.GROQ_MODEL_NAME
 
-        self.temperature = GROQ_TEMPERATURE
+        self.temperature = config.GROQ_TEMPERATURE
         
         self.seed = seed
 

@@ -2,7 +2,7 @@ from .prompt_executor_interface import PromptExecutorInterface
 from ..agent.ai_agent_interface import AIAgentInterface
 
 from exceptions.max_retries_exceeded_error import MaxRetriesExceededError
-from config.ai_agent.prompt_executor_config import *
+import config.ai_agent.prompt_executor_config as config
 
 from openai import RateLimitError
 
@@ -14,8 +14,8 @@ class PromptExecutor(PromptExecutorInterface):
     def __init__(
             self, 
             ai_agent: AIAgentInterface, 
-            max_retries: int = PROMPT_MAX_RETRIES, 
-            backoff_factor: float = PROMPT_BACKOFF_FACTOR
+            max_retries: int = config.PROMPT_MAX_RETRIES, 
+            backoff_factor: float = config.PROMPT_BACKOFF_FACTOR
             ) -> None:
         
         self.ai_agent = ai_agent
