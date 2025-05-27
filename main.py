@@ -1,11 +1,12 @@
 from scraper.factory.default_html_timetable_scraper_factory import DefaultHTMLTimetableScraperFactory
 from scraper.factory.default_image_timetable_scraper_factory import DefaultImageTimetableScraperFactory
+from scraper.factory.selenium_html_timetable_scraper_factory import SeleniumHTMLTimetableScraperFactory
 
 import json
 
 
 URL_LIST = [
-    "https://salsa4fun.co.uk/class-schedule"
+    "https://live4dancing.co.uk/timetable/"
 ]
 
 def main():
@@ -19,19 +20,6 @@ def main():
 
     with open("extracted_activities.json", "w") as file:
         json.dump(output, file, indent=4)
-
-def test():
-
-    from scraper.fetcher import ImageFetcher
-    import base64
-
-    image = ImageFetcher().fetch("https://salsa4fun.co.uk/class-schedule")
-
-    with open("page_screenshot.jpeg", "wb") as file:
-        
-        image_bytes = base64.b64decode(image)
-
-        file.write(image_bytes)
     
 if __name__ == "__main__":
 

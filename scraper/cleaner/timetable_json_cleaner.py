@@ -14,11 +14,9 @@ class TimetableJsonCleaner(CleanerInterface):
 
         for activity in timetable:
 
-            if (verify_field_exists('activity_name', activity)
-                and
-                verify_field_exists('start_time', activity)
-                and 
-                (verify_field_exists('day', activity) or verify_field_exists('date_range', activity)) 
+            if (
+                verify_field_exists('activity_name', activity)
+                and verify_field_exists('start_time', activity)
                 ):
 
                 clean_timetable.append(activity)
