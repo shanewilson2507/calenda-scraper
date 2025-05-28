@@ -6,7 +6,7 @@ import json
 
 
 URL_LIST = [
-    "https://live4dancing.co.uk/timetable/"
+    "https://www.bjjlondon.com/timetable"
 ]
 
 def main():
@@ -20,6 +20,13 @@ def main():
 
     with open("extracted_activities.json", "w") as file:
         json.dump(output, file, indent=4)
+
+def test():
+    from scraper.fetcher.png_image_fetcher import PngImageFetcher
+
+    fetcher = PngImageFetcher()
+
+    fetcher.fetch(URL_LIST[0])
     
 if __name__ == "__main__":
 

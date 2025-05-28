@@ -19,7 +19,7 @@ class OpenaiImageAgent(AIAgentInterface):
         self.seed = seed
 
     
-    def ask(self, base64_image_str: str, system_message: str) -> str:
+    def ask(self, base64_image_url: str, system_message: str) -> str:
         
         messages = [
                 {
@@ -36,7 +36,7 @@ class OpenaiImageAgent(AIAgentInterface):
                         {
                             "type" : "image_url",
                             "image_url" : {
-                                "url" : f"data:image/jpeg;base64,{base64_image_str}"
+                                "url" : base64_image_url
                             }
                         }
                     ]

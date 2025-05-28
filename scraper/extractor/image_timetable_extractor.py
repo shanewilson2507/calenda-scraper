@@ -15,9 +15,9 @@ class ImageTimetableExtractor(ExtractorInterface):
         
         self.system_message = config.TIMETABLE_EXTRACTOR_SYSTEM_MESSAGE
 
-    def extract(self, base64_image_str: str) -> List[Dict[str, str]]:
+    def extract(self, base64_image_url: str) -> List[Dict[str, str]]:
 
-        response = self.executor.execute(base64_image_str, self.system_message)
+        response = self.executor.execute(base64_image_url, self.system_message)
 
         print(response)
 

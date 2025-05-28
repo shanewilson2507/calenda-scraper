@@ -1,7 +1,7 @@
 from scraper.ai_agent import OpenaiImageAgent, PromptExecutor
 from scraper.ai_agent.agent.ai_agent_interface import AIAgentInterface
 from scraper.ai_agent.prompt_executor.prompt_executor_interface import PromptExecutorInterface
-from scraper.fetcher import ImageFetcher
+from scraper.fetcher import PngImageFetcher
 from scraper.fetcher.fetcher_interface import FetcherInterface
 from scraper.extractor import ImageTimetableExtractor, RobustJsonExtractor
 from scraper.extractor.extractor_interface import ExtractorInterface
@@ -15,7 +15,7 @@ class DefaultImageTimetableScraperFactory(TimetableScraperFactoryInterface):
     @staticmethod
     def _create_fetcher() -> FetcherInterface:
 
-        return ImageFetcher()
+        return PngImageFetcher()
     
     @staticmethod
     def _create_ai_agent() -> AIAgentInterface:

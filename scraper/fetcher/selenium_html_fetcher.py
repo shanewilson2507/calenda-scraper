@@ -12,7 +12,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 class SeleniumHTMLFetcher(FetcherInterface):
 
-    service: Service = Service(ChromeDriverManager().install())
+    try:
+
+        service: Service = Service(ChromeDriverManager().install())
+    
+    except:
+    
+        service: Service = Service("drivers\\chromedriver.exe")
 
     def __init__(self):
 

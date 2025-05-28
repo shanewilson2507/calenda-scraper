@@ -5,7 +5,6 @@ from scraper.cleaner.cleaner_interface import CleanerInterface
 
 from typing import List, Dict
 import json
-import base64
 
 
 class ImageTimetableScraper(TimetableScraperInterface):
@@ -25,11 +24,9 @@ class ImageTimetableScraper(TimetableScraperInterface):
 
     def scrape_timetable(self, url: str) -> List[Dict[str,str]]:
         
-        base64_jpeg_image: str = self.fetcher.fetch(url)
+        base64_image_url: str = self.fetcher.fetch(url)
 
-        self._save_image(base64_jpeg_image)
-
-        timetable = self.timetable_extractor.extract(base64_jpeg_image)
+        timetable = self.timetable_extractor.extract(base64_image_url)
         
         timetable_json_str = json.dumps(timetable)
 
@@ -38,13 +35,6 @@ class ImageTimetableScraper(TimetableScraperInterface):
         cleaned_timetable = json.loads(cleaned_timetable_json_str)
 
         return cleaned_timetable
-    
-    def _save_image(self, base64_jpeg_image: str) -> None:
 
-        with open("page_screenshot.jpeg", "wb") as file:
-
-            jpeg_bytes = base64.b64decode(base64_jpeg_image)
-
-            file.write(jpeg_bytes)
 
         
