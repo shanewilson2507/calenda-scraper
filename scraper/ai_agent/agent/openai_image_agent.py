@@ -6,7 +6,7 @@ from openai import OpenAI
 
 class OpenaiImageAgent(AIAgentInterface):
     
-    def __init__(self, api_key: str = config.OPENAI_IMAGE_API_KEY, seed: str = config.OPENAI_SEED) -> None:
+    def __init__(self, api_key: str = config.OPENAI_IMAGE_API_KEY, seed: int = config.OPENAI_SEED) -> None:
 
         self.client = OpenAI(
             api_key = api_key, 

@@ -7,7 +7,7 @@ from openai import OpenAI
 
 class GroqAgent(AIAgentInterface):
     
-    def __init__(self, api_key: str = config.GROQ_API_KEY, seed: str = config.GROQ_SEED) -> None:
+    def __init__(self, api_key: str = config.GROQ_API_KEY, seed: int = config.GROQ_SEED) -> None:
 
         self.client = OpenAI(
             api_key = api_key, 

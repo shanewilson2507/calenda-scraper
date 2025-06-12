@@ -4,9 +4,15 @@ from scraper.factory.selenium_html_timetable_scraper_factory import SeleniumHTML
 
 import json
 
+"""
+import base64
+with open("page_screenshot.png", "rb") as file:
+    base64_image = base64.b64encode(file.read()).decode("utf-8")
+    base64_image_url = f"data:image/png;base64,{base64_image}"
+"""
 
 URL_LIST = [
-    "https://www.bjjlondon.com/timetable"
+    "https://enodanse.live.baluu.co.uk/timetable"
 ]
 
 def main():
@@ -22,12 +28,16 @@ def main():
         json.dump(output, file, indent=4)
 
 def test():
-    from scraper.fetcher.png_image_fetcher import PngImageFetcher
+    from scraper.ai_agent import GeminiImageAgent
 
-    fetcher = PngImageFetcher()
+    agent = GeminiImageAgent()
 
-    fetcher.fetch(URL_LIST[0])
+    with open("page_screenshot.png", 'rb') as file:
+        image = file.read()
+
+
+    print(agent.ask(image, "Extract all timetable data in json format from the image below:" ))
     
 if __name__ == "__main__":
 
-    main()
+    test()
